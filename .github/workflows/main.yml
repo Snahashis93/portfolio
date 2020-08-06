@@ -1,27 +1,15 @@
-name: CI
+name: Push on commit
 
-on:
-  push:
-    branches:
-    - master
-    - release/*
+on: [push]
 
 jobs:
-  firebase-deploy:
+  build:
 
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@master
-      - uses: actions/setup-node@master
-        with:
-          node-version: '10.x'
-      - run: npm install
-      - run: npm run build:prod
-      - uses: Snahashis93/portfolio@master
-      - name: Deploy to Firebase
-        uses: lowply/deploy-firebase@v0.0.3
-        env:
-         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-         FIREBASE_PROJECT: PortFolio
-      
+    - name: Send Push Notification
+      uses: techulus/push-github-action@1.0.0
+      env:
+        API_KEY: ${{ secrets.API_KEY }}
+        MESSAGE: "There is a new commit!"
