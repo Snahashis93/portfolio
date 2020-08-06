@@ -1,0 +1,2 @@
+- name: Deploy to Firebase
+  uses: lowply/deploy-firebase@v0.0.4
