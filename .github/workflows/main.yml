@@ -1,20 +1,25 @@
-name: Build and Deploy
+name: CI
+
 on:
   push:
     branches:
-    - main
+    - master
+    - release/*
+
 jobs:
-  main:
-    name: Build and Deploy
+  firebase-deploy:
+
     runs-on: ubuntu-latest
+
     steps:
-    - name: Check out code
-      uses: actions/checkout@master
-    - name: Build Hugo
-      uses: lowply/build-hugo@v0.68.3
-    - name: Deploy to Firebase
-      uses: lowply/deploy-firebase@v0.0.3
-      env:
-        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-        FIREBASE_PROJECT: PortFolio
-        TARGET_BRANCH: master
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@master
+        with:
+          node-version: '10.x'
+      - run: npm install
+      - run: npm run build:prod
+      - uses: w9jds/firebase-action@master
+        with:
+          args: deploy --only hosting
+        env:
+         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
