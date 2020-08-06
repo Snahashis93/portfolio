@@ -9,7 +9,7 @@
                     <div class="row">
                       <div class="col-md-6">
                         <div class="card-body">
-                          <form name="form" (ngSubmit)="f.form.valid ; f.resetForm()" #f="ngForm" novalidate>
+                          <form action="https://send.pageclip.co/kyOZDrtG40qEzqaBNIOSzPYIp8pUlIVM/Contact" class="pageclip-form" method="post">   
                             <div class="p pb-3">
                               <strong>Feel free to contact me </strong>
                             </div>
@@ -21,7 +21,7 @@
                                   </span>
                                   <input class="form-control" type="text" name="name" placeholder="Name"
                                     [(ngModel)]="model.name" #name="ngModel"
-                                    [ngClass]="{ 'is-invalid': f.submitted && name.invalid }" required />
+                                    
                                 </div>
                               </div>
                             </div>
@@ -33,7 +33,6 @@
                                   </span>
                                   <input class="form-control" type="text" name="subject" placeholder="Subject"
                                     [(ngModel)]="model.subject" #subject="ngModel"
-                                    [ngClass]="{ 'is-invalid': f.submitted && subject.invalid }" required />
                                 </div>
                               </div>
                             </div>
@@ -45,7 +44,6 @@
                                   </span>
                                   <input class="form-control" type="text" name="email" placeholder="E-mail"
                                     [(ngModel)]="model.email" #email="ngModel"
-                                    [ngClass]="{ 'is-invalid': f.submitted && email.invalid }"
                                     pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" required />
                                 </div>
                               </div>
@@ -55,13 +53,13 @@
                                 <div class="form-group">
                                   <textarea class="form-control" name="message" placeholder="Your Message"
                                     [(ngModel)]="model.message" #message="ngModel"
-                                    [ngClass]="{ 'is-invalid': f.submitted && message.invalid }" required></textarea>
+                                    ></textarea>
                                 </div>
                               </div>
                             </div>
                             <div class="row">
                               <div class="col">
-                                <button class="btn btn-primary" type="submit">Send</button>
+                                <button class="btn btn-primary pageclip-form__submit" type="submit">Send</button>
                               </div>
                             </div>
                           </form>
