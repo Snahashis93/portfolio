@@ -1,9 +1,16 @@
 language: node_js
 node_js:
-  - "7"
+  - "11.0"
+branches:
+  only:
+    - master
+before_script:
+  - npm install -g @angular/cli
 script:
- - echo "Deploy!!"
-install:
-  - npm install -g firebase-tools
-after_success:
-  - firebase deploy --project portfolio-snahashis --token $FIREBASE_TOKEN
+  - npm install
+  - npm run build
+deploy:
+  skip_cleanup: true
+  provider: firebase
+  token:
+    secure: "1//0gOx3X5Bgr53nCgYIARAAGBASNwF-L9IrqhoExP0PqlMsb_V40prdMDeOY1XY15b1yjUhGv_5U4dzYLobDgzOR4_10Fm1HtzVv_w"
